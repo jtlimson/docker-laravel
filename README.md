@@ -3,6 +3,7 @@ A pretty simplified Docker Compose workflow that sets up a LEMP network of conta
 
 ## Usage
 
+### Build
 To get started, make sure you have [Docker installed](https://docs.docker.com/docker-for-mac/install/) on your system, and then clone this repository.
 
 Next, navigate in your terminal to the directory you cloned this, and spin up the containers for the web server by running `docker-compose up -d --build site`.
@@ -16,6 +17,12 @@ Bringing up the Docker Compose network with `site` instead of just using `up`, e
 - **php** - `:9000`
 - **redis** - `:6379`
 - **mailhog** - `:8025` 
+
+### Deploy
+
+To deploy `docker-compose up -d`
+
+To destroy `docker-compose down`
 
 ## Permissions Issues
 
