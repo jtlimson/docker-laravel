@@ -65,54 +65,6 @@ services:
     networks:
       - laravel
 
-#  composer:
-#    build:
-#      context: ./dockerfiles
-#      dockerfile: composer.dockerfile
-#      args:
-#        - UID=${UID:-1000}
-#        - GID=${GID:-1000}
-#    container_name: composer
-#    volumes:
-#      - ./src/laravel:/var/www/html
-#    working_dir: /var/www/html
-#   depends_on:
-#      - php
-#    user: laravel
-#    entrypoint: ['composer', '--ignore-platform-reqs']
-#    networks:
-#      - laravel
-
-#  npm:
-#    image: node:13.7
-#    container_name: npm
-#    volumes:
-#      - ./src/laravel:/var/www/html
-  #    ports:
-  #      - 3000:3000
-  #      - 3001:3001
-#    working_dir: /var/www/html
-#    entrypoint: ['npm']
-#    networks:
-#    - laravel
-
-#  artisan:
-#    build:
-#      context: ./dockerfiles
-#      dockerfile: php.dockerfile
-#      args:
-#        - UID=${UID:-1000}
-#        - GID=${GID:-1000}
-#    container_name: artisan
-#    volumes:
-#      - ./src/laravel:/var/www/html:delegated
-#    depends_on:
-#      - mysql
-#    working_dir: /var/www/html
-#    entrypoint: ['php', '/var/www/html/artisan']
-#    networks:
-#      - laravel
-
   mailhog:
     image: mailhog/mailhog:latest
     container_name: mailhog

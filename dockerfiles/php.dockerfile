@@ -32,7 +32,10 @@ RUN apk add --no-cache \
     openssh-client \
     postgresql-libs \
     rsync \
-    zlib-dev
+    zlib-dev \
+    less \
+    vim \
+    openrc 
 
 # Install php extensions
 RUN chmod +x /usr/local/bin/install-php-extensions && \
@@ -50,16 +53,21 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
     pdo_pgsql \
     pcntl \
     soap \
-    zip
+    zip \
+    imap
 
 # Install PHP_CodeSniffer
 RUN composer global require "squizlabs/php_codesniffer=*"
 
 RUN docker-php-ext-install pdo pdo_mysql
 
-RUN mkdir -p /usr/src/php/ext/redis \
-    && curl -L https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
-    && echo 'redis' >> /usr/src/php-available-exts \
-    && docker-php-ext-install redis
+#RUN mkdir -p /usr/src/php/ext/redis \
+#    && curl -L https://github.com/phpredis/phpredis/archive/5.3.4.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
+#    && echo 'redis' >> /usr/src/php-available-exts \
+#    && docker-php-ext-install redis
+
+RUN echo "*       *       *       *       *       /usr/local/bin/php /var/www/html/artisan schedule:run >> /var/log/laravel.log 2>&1" >> /etc/crontabs/root
+
+RUN touch /var/log/laravel.log
 
 CMD ["php-fpm", "-y", "/usr/local/etc/php-fpm.conf", "-R"]
